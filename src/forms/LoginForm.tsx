@@ -2,19 +2,40 @@ import { Form, Formik } from "formik";
 import { Button } from "../components/Button/Button";
 import { Input } from "../components/Input/Input";
 import loginValidation from "./validation";
+import useMutation from "../api/useMutation";
+import { useFetch } from "../api/useFetch";
+import { configs } from "../configs";
+import { useAuth } from "../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const initialValues = {
   username: "",
   password: "",
 };
 const LoginForm = () => {
-    console.log(initialValues)
+   const {Login} =useAuth()
+   const navigate =useNavigate()
+   const handleSubmit = async (values)=>{
+    try{
+      const response = await fetch(configs.BASE_URL+"/auth");
+      const data =await response.json()
+      if(data.username ==values.username && data.password ==values.password){
+      Login(values.username)
+      navigate("/home")
+      
+      }
+    }
+    catch(err){
+       console.error(err)
+    }
+
+   }
   return ( 
     <Formik
       initialValues={initialValues}
       validationSchema={loginValidation}
       onSubmit={(values) => {
-        alert( values);
+       handleSubmit(values)
       }}
     >
 {

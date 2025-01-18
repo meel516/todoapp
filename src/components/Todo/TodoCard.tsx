@@ -1,3 +1,4 @@
+import {completedSvg,inProgressSvg,todoSvg} from "../../assets/svgs/index.ts"
 type todoCard ={
     status:"done"|"todo"|"in progress",
     title:string,
@@ -8,22 +9,32 @@ type todoCard ={
     id:string,
 }
 
+
 const TodoCard = ({status,assignedUser,description,dueDate,id,priority,title}:todoCard) => {
   return (
-    <div className={`todo-card ${status}`}>
-      <div className="todo-card-header">
-        <h2>{title}</h2>
-        <span>{status}</span>
-      </div>
-      <div className="todo-card-content">
-        <p>{description}</p>
-        <div className="todo-card-meta">
-          <span>Due: {dueDate}</span>
-          <span>Priority: {priority}</span>
-          <span>Assigned to: {assignedUser}</span>
-        </div>
+    <>
+    <div className="transition-transform transform hover:scale-105">
+    <div className={`todo-card ${status} flex flex-col bg-white shadow-md rounded-t-lg p-4  ${priority === 'high' ? 'border-2 border-red-100' : priority === 'medium' ? 'border border-yellow-500' : 'border border-green-500'}`}>
+    <div className="todo-card-header flex justify-between items-center border-b pb-2 mb-2">
+      <h2 className="text-xl font-semibold text-gray-800">{title}</h2>
+     <div className="gap-1 flex items-center">
+     <img width="24px" height="24px" src={status=="done"?completedSvg:status=="in progress"?inProgressSvg:todoSvg} />
+      <span className={`text-sm font-medium ${status === 'done' ? 'text-green-500' :status=="in progress"?'text-blue-500':"text-red-300"}`}>{status}</span>
+      
       </div>
     </div>
+    <div className="todo-card-content">
+      <p className="text-gray-700 mb-2">{description}</p>
+      <div className="todo-card-meta flex justify-between text-sm text-gray-600">
+        <span>Due: <span className="font-medium text-gray-800">{dueDate}</span></span>
+       
+        <span>Assigned to: <span className="font-medium text-gray-800">{assignedUser }</span></span>
+      </div>
+    </div>
+  </div>
+  <div className={`w-full p-2 rounded-b-md text-white flex justify-center ${priority === 'high' ? 'bg-red-400' : priority === 'medium' ? 'bg-yellow-500' : 'bg-green-500'}`}>Priority: <span className={`font-medium `}>{priority}</span></div>
+  </div>
+  </>
   )
 }
 

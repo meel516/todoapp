@@ -1,34 +1,24 @@
 // src/Modal.stories.js
-import React, { useState } from "react";
-import { Modal } from "./Modal";
+import React from "react";
 import { Meta, StoryFn } from "@storybook/react";
 import TodoCard from "./TodoCard";
 
-
 export default {
-  title: "Components/Tododcard",
+  title: "Components/TodoCard", // Corrected the title to "TodoCard"
   component: TodoCard,
 } as Meta;
 
 const Template: StoryFn = (args) => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  return (
-    <div className="w-full h-screen bg-red-200">
-      <div>
-     
-       <TodoCard assignedUser="saleem" dueDate={"27-11-1997"} id="sda" description ={"sadd"} priority={"high"}status="in progress" title="learn javascript" />
-      </div>
-    </div>
-  );
+  return <TodoCard {...args} />;
 };
 
-export const Modalexample = Template.bind({});
-Modalexample.args = {
-  children: (
-    <>
-      <h2>Modal Title</h2>
-      <p>This is the content of the modal.</p>
-    </>
-  ),
+export const todoCardExample = Template.bind({}); // Corrected the export name
+todoCardExample.args = {
+  assignedUser:  "Saleem", // Capitalized the name for consistency
+  dueDate: "27-11-1997", // Changed to a string instead of an object
+  id: "sda",
+  description: "sadd", // Changed to a string instead of an object
+  priority: "high", // Changed to a string instead of an object
+  status: "in progress",
+  title: "Learn JavaScript"// Capitalized for consistency
 };
