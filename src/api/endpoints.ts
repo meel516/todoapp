@@ -36,11 +36,11 @@ export const endpoints: Endpoints = {
   todo: {
     getAll: '/todo',
     getById: (id: string) => `/todo/${id}`,
-    create: '/todo/create',
+    create: '/todo',
     update: (id: string) => `/todo/${id}`,
     partialUpdate: (id: string) => `/todo/${id}/partial-update`,
     delete: (id: string) => `/todo/${id}`,
-    filter: (filters: Record<string, string>) => `/todo/filter?${new URLSearchParams(filters).toString()}`,
+    filter: (filters: Record<string, string>) => `/todo?${new URLSearchParams(filters).toString()}`,
   },
   users: {
     getAll: '/users',

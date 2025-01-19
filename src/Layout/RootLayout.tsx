@@ -7,7 +7,7 @@ const RootLayout = () => {
     <>
     <WithProtectedRoute>
    <Header/>
-   <section>
+   <section className="flex-1" >
     <Outlet/>
    </section>
    </WithProtectedRoute>

@@ -2,7 +2,7 @@
   "todo": [
     {
       "id": "1",
-      "title": "1Learn JavaScript",
+      "title": "Learn JavaScript Basics",
       "status": "todo",
       "dueDate": "2020-12-31",
       "description": "Learn JavaScript basics",
@@ -11,33 +11,121 @@
       "tags": []
     },
     {
-      "id": "1",
-      "title": "3Learn JavaScript1",
+      "id": "2",
+      "title": "Learn React",
       "status": "inProgress",
-      "dueDate": "2020-12-31",
-      "description": "Learn JavaScript basics",
-      "assignedUser": 1,
-      "priority": "high",
-      "tags": []
+      "dueDate": "2021-05-10",
+      "description": "Complete React tutorial",
+      "assignedUser": 2,
+      "priority": "medium",
+      "tags": [
+        "React",
+        "JavaScript"
+      ]
     },
     {
-      "id": "1",
-      "title": "2Learn JavaScript2",
+      "id": "3",
+      "title": "Learn Node.js",
+      "status": "todo",
+      "dueDate": "2022-01-15",
+      "description": "Master backend with Node.js",
+      "assignedUser": 3,
+      "priority": "high",
+      "tags": [
+        "Node.js"
+      ]
+    },
+    {
+      "id": "4",
+      "title": "Learn JavaScript Deeply",
       "status": "done",
-      "dueDate": "2020-12-31",
-      "description": "Learn JavaScript basics",
+      "dueDate": "2023-02-24",
+      "description": "Deep dive into JavaScript concepts",
       "assignedUser": 1,
       "priority": "low",
       "tags": []
     },
     {
-      "id": "1",
-      "title": "4Learn JavaScript3",
+      "id": "5",
+      "title": "Complete this Application",
       "status": "todo",
-      "dueDate": "2020-12-31",
-      "description": "Learn JavaScript basics",
-      "assignedUser": 1,
+      "dueDate": "2020-11-30",
+      "description": "Finish JavaScript online course project",
+      "assignedUser": 2,
+      "priority": "low",
+      "tags": [
+        "JavaScript"
+      ]
+    },
+    {
+      "id": "6",
+      "title": "Learn Angular",
+      "status": "inProgress",
+      "dueDate": "2023-05-01",
+      "description": "Learn Angular for web development",
+      "assignedUser": 3,
       "priority": "high",
+      "tags": [
+        "Angular"
+      ]
+    },
+    {
+      "id": "7",
+      "title": "Complete Backend API",
+      "status": "todo",
+      "dueDate": "2023-06-10",
+      "description": "Build a backend API using Express.js",
+      "assignedUser": 4,
+      "priority": "high",
+      "tags": [
+        "API",
+        "Express"
+      ]
+    },
+    {
+      "id": "8",
+      "title": "Learn TypeScript",
+      "status": "done",
+      "dueDate": "2023-04-01",
+      "description": "Learn TypeScript and its usage in React",
+      "assignedUser": 1,
+      "priority": "medium",
+      "tags": [
+        "TypeScript"
+      ]
+    },
+    {
+      "id": "9",
+      "title": "Learn MongoDB",
+      "status": "todo",
+      "dueDate": "2023-07-05",
+      "description": "Learn MongoDB NoSQL database",
+      "assignedUser": 2,
+      "priority": "medium",
+      "tags": [
+        "MongoDB"
+      ]
+    },
+    {
+      "id": "10",
+      "title": "Learn Express.js",
+      "status": "inProgress",
+      "dueDate": "2023-05-20",
+      "description": "Complete Express.js tutorial",
+      "assignedUser": 3,
+      "priority": "high",
+      "tags": [
+        "Express.js"
+      ]
+    },
+    {
+      "id": "0210a61a-7b7a-4e16-b944-7e0e5fd70ae0",
+      "title": "complete this application",
+      "status": "inProgress",
+      "dueDate": "2020-12-31",
+      "description": "java script online",
+      "assignedUser": "8",
+      "priority": "low",
       "tags": []
     }
   ],
@@ -63,9 +151,34 @@
       "email": "dean@example.com"
     },
     {
-      "id": "427d",
-      "name": "Dean Doe",
-      "email": "dean@example.com"
+      "id": "5",
+      "name": "Dan Doe",
+      "email": "dan@example.com"
+    },
+    {
+      "id": "6",
+      "name": "Sam Smith",
+      "email": "sam@example.com"
+    },
+    {
+      "id": "7",
+      "name": "James Taylor",
+      "email": "james@example.com"
+    },
+    {
+      "id": "8",
+      "name": "Alice Brown",
+      "email": "alice@example.com"
+    },
+    {
+      "id": "9",
+      "name": "Emma Wilson",
+      "email": "emma@example.com"
+    },
+    {
+      "id": "10",
+      "name": "Oliver Harris",
+      "email": "oliver@example.com"
     }
   ],
   "auth": {

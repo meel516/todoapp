@@ -1,6 +1,6 @@
 import { Button } from "../components/Button/Button"
-import { Input } from "../components/Input/Input"
-import LoginForm from "../forms/LoginForm"
+import { Input } from "../components/Input/FormField"
+import LoginForm from "../forms/Loginform/LoginForm"
 
 const Login = () => {
   return (

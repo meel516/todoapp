@@ -27,7 +27,7 @@ export const useFetch = <
       ? (endpoints[service][action] as (...args: any) => string)(params)
       : (endpoints[service][action] as string);
 
-  const { data, error, isLoading } = useSWR<T>(endpoint, fetcher);
+  const { data, error, isLoading,mutate } = useSWR<T>(endpoint, fetcher);
 
-  return { data, error, isLoading };
+  return { data, error, isLoading,mutate };
 };

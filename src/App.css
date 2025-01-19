@@ -13,3 +13,13 @@ input:focus {
     }
   }
 
+#root{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+/* Hide scrollbar for webkit browsers */
+::-webkit-scrollbar {
+  display: none;
+}
+

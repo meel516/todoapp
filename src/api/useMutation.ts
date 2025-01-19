@@ -1,6 +1,7 @@
 import { useCallback, useState } from 'react';
 import apiClient from './apiClient'; 
 import { endpoints, Endpoints, EndpointFunction } from './endpoints';
+import useLoader from '../hooks/useLoader';
 
 
 interface MutationOptions {
@@ -10,6 +11,7 @@ interface MutationOptions {
 }
 
 const useMutation = () => {
+  const {setLoading} =useLoader()
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
 
@@ -29,10 +31,12 @@ const useMutation = () => {
 
       const { method, isFormData, body } = mergedOptions;
       setIsLoading(true);
+      setLoading(true)
       setError(null); // Clear previous errors
 
       try {
         // Get the endpoint from the endpoints configuration
+        const delay = await new Promise((resolve, reject) => {setTimeout(()=>resolve(null),1000)})
         const endpoint = endpoints[serviceName][action];
 
         // Explicitly check if the endpoint is a function, and call it if it is
@@ -63,7 +67,7 @@ const useMutation = () => {
         const results = response.data;
 
         // Handle response success or failure
-        if (results.success) {
+        if (results) {
           return { results, status: response.status }; // Success response
         } else {
           throw new Error('Request failed with error: ' + results.message); // Handle failure
@@ -74,6 +78,7 @@ const useMutation = () => {
         throw err; // Re-throw for potential external handling
       } finally {
         setIsLoading(false); // Reset loading state
+        setLoading(false)
       }
     },
     [] // Empty dependency array ensures this function is stable across re-renders

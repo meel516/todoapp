@@ -7,12 +7,12 @@ import { AuthContextProvider } from './contexts/AuthContext.tsx'
 import { LoaderContextProvider } from './hooks/useLoader.tsx'
 
 createRoot(document.getElementById('root')!).render(
-  <StrictMode>
+
     <AuthContextProvider>
       <LoaderContextProvider>   
         <App />
       </LoaderContextProvider>
 
     </AuthContextProvider>
-  </StrictMode>,
+
 )
