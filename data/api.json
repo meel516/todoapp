@@ -13,10 +13,10 @@
     {
       "id": "2",
       "title": "Learn React",
-      "status": "inProgress",
+      "status": "done",
       "dueDate": "2021-05-10",
       "description": "Complete React tutorial",
-      "assignedUser": 2,
+      "assignedUser": "8",
       "priority": "medium",
       "tags": [
         "React",
@@ -51,7 +51,7 @@
       "status": "todo",
       "dueDate": "2020-11-30",
       "description": "Finish JavaScript online course project",
-      "assignedUser": 2,
+      "assignedUser": "6",
       "priority": "low",
       "tags": [
         "JavaScript"
@@ -88,7 +88,7 @@
       "status": "done",
       "dueDate": "2023-04-01",
       "description": "Learn TypeScript and its usage in React",
-      "assignedUser": 1,
+      "assignedUser": "9",
       "priority": "medium",
       "tags": [
         "TypeScript"
