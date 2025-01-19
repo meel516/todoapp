@@ -16,16 +16,23 @@ const initialValues = {
 const LoginForm = () => {
    const {Login} =useAuth()
    const navigate =useNavigate()
-   const handleSubmit = async (values)=>{
+   const handleSubmit = async (values,setErrors)=>{
     try{
       const response = await apiClient.get("/auth"); // Using apiClient
 
       if(response.data.username ==values.username && response.data.password ==values.password){
       Login(values.username)
+
       navigate("/home")
-      
+  
       }
+      else {
+         
+   
+            setErrors({password: "Incorrect password or Username",username: "Incorrect password or Password"})
+  
     }
+  }
     catch(err){
        console.error(err)
     }
@@ -36,8 +43,8 @@ const LoginForm = () => {
       initialValues={initialValues}
       validationSchema={loginValidation}
       validateOnMount
-      onSubmit={(values) => {
-       handleSubmit(values)
+      onSubmit={(values,{setErrors}) => {
+       handleSubmit(values,setErrors)
       }}
     >
 {
