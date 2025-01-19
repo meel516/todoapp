@@ -13,7 +13,7 @@ const useToast = () => {
 
   useEffect(() => {
     if (showToast) {
-      const timeout = setTimeout(() => setShowToast(false), 3000);
+      const timeout = setTimeout(() => setShowToast(false), 1000);
       return () => clearTimeout(timeout);
     }
   }, [showToast]);

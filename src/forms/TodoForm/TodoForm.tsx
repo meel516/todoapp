@@ -10,13 +10,13 @@ import { useFetch } from '../../api/useFetch';
 
 
 const initialValues = {
-  id: "1",
-  title: "Learn JavaScript",
-  status: "todo",
-  dueDate: "2020-12-31",
-  description: "Learn JavaScript basics",
+  id: "",
+  title: "",
+  status: "",
+  dueDate: "",
+  description: "",
   assignedUser: 1,
-  priority: "high",
+  priority: "",
   tags: [],
 };
 
@@ -26,7 +26,7 @@ const TodoForm = ({mode,mutateTodo,selectedtodo,handleCloseModal,usersData}) => 
 
   const {mutation:todoPost} =useMutation()
   const {data:cardData,isLoading} =useFetch("todo",`${mode=="edit"?'getById':null}`,selectedtodo)
-  console.log(cardData,"saleem")
+
 const [initialValues,setInitialValues] =useState({
     id: "",
     title: "",

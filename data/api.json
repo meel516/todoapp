@@ -26,7 +26,7 @@
     {
       "id": "3",
       "title": "Learn Node.js",
-      "status": "todo",
+      "status": "done",
       "dueDate": "2022-01-15",
       "description": "Master backend with Node.js",
       "assignedUser": 3,
@@ -126,6 +126,16 @@
       "description": "java script online",
       "assignedUser": "8",
       "priority": "low",
+      "tags": []
+    },
+    {
+      "id": "2b407434-29e7-4ce3-bf60-a718164c66da",
+      "title": "Learn React",
+      "status": "todo",
+      "dueDate": "2020-12-29T00:00:00.000Z",
+      "description": "Complete React tutorial",
+      "assignedUser": "9",
+      "priority": "medium",
       "tags": []
     }
   ],

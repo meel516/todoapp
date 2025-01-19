@@ -19,7 +19,7 @@ const LoginForm = () => {
    const handleSubmit = async (values)=>{
     try{
       const response = await apiClient.get("/auth"); // Using apiClient
-      console.log("Posts:", response.data);
+
       if(response.data.username ==values.username && response.data.password ==values.password){
       Login(values.username)
       navigate("/home")
@@ -35,6 +35,7 @@ const LoginForm = () => {
     <Formik
       initialValues={initialValues}
       validationSchema={loginValidation}
+      validateOnMount
       onSubmit={(values) => {
        handleSubmit(values)
       }}

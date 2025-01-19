@@ -38,7 +38,7 @@ export const AuthContextProvider: React.FC<{ children: ReactNode }> = ({children
             }
             
             const data = await response.json();
-            console.log(data);
+         
     
             setAuthenticated(true);
             setUserDetails({ username: storedUsername });

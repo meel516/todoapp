@@ -1,6 +1,22 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 
-const Pops = ({
+interface PopsProps {
+  wrapper: React.ReactElement;
+  children: React.ReactNode;
+  className?: string;
+  popRef?: React.RefObject<HTMLDivElement>;
+  boxRef?: React.RefObject<HTMLDivElement>;
+}
+
+interface ItemProps {
+  children: React.ReactNode;
+  className?: string;
+  handleClose: () => void;
+  onClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+  [key: string]: any;
+}
+
+const Pops: React.FC<PopsProps> & { Item: React.FC<ItemProps> } = ({
   wrapper,
   children,
   className,
@@ -8,39 +24,31 @@ const Pops = ({
   boxRef: tableRef,
 }) => {
   const [isOpen, setOpen] = useState(false);
-  // const containerRef = useRef(null);
-  const optionalRef = useRef(null);
-  if (containerRef === undefined) {
-    containerRef = optionalRef;
-  }
+  const optionalRef = useRef<HTMLDivElement>(null);
+  if (!containerRef) containerRef = optionalRef;
 
-  const buttonRef = useRef(null);
-  const handleClose = () => {
-    setOpen(false);
-  };
-  const handleOpen = () => {
-    setOpen(true);
-  };
-  const handleToggle = () => {
-    setOpen((prev) => !prev);
-  };
-  const handleWrapper = (event) => {
+  const buttonRef = useRef<HTMLDivElement>(null);
+
+  const handleClose = () => setOpen(false);
+  const handleOpen = () => setOpen(true);
+  const handleToggle = () => setOpen((prev) => !prev);
+
+  const handleWrapper = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     handleToggle();
-    if (wrapper.props.onClick) {
-      wrapper.props.onClick(event);
-    }
+    wrapper.props.onClick?.(event);
   };
 
-  const handleClickOutside = (event) => {
+  const handleClickOutside = (event: MouseEvent) => {
     if (
-      containerRef.current &&
-      !containerRef.current.contains(event.target) &&
-      buttonRef.current &&
-      !buttonRef.current.contains(event.target)
+      containerRef?.current &&
+      !containerRef.current.contains(event.target as Node) &&
+      buttonRef?.current &&
+      !buttonRef.current.contains(event.target as Node)
     ) {
       handleClose();
     }
   };
+
   useEffect(() => {
     if (isOpen) {
       document.addEventListener("mousedown", handleClickOutside);
@@ -52,34 +60,7 @@ const Pops = ({
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [isOpen]);
-  //   const container = containerRef.current;
-  //   const popup = boxRef.current;
-  //   console.log(container, popup, "kik");
 
-  //   if (container && popup) {
-  //     const containerRect = container.getBoundingClientRect();
-  //     const popupRect = popup.getBoundingClientRect();
-
-  //     // Check if the popup's right side exceeds the container's right side
-  //     if (popupRect.right > containerRect.right) {
-  //       popup.style.left = `${containerRect.right - popupRect.width}px`;
-  //     }
-
-  //     // Check if the popup's left side exceeds the container's left side
-  //     if (popupRect.left < containerRect.left) {
-  //       popup.style.left = `${containerRect.left}px`;
-  //     }
-
-  //     // Adjust the popup to be within the container on the Y axis if necessary
-  //     if (popupRect.bottom > containerRect.bottom) {
-  //       popup.style.top = `${containerRect.bottom - popupRect.height}px`;
-  //     }
-
-  //     if (popupRect.top < containerRect.top) {
-  //       popup.style.top = `${containerRect.top}px`;
-  //     }
-  //   }
-  // }, [isOpen, boxRef]);
   useLayoutEffect(() => {
     const container = tableRef?.current;
     const popup = containerRef?.current;
@@ -88,27 +69,14 @@ const Pops = ({
       const containerRect = container.getBoundingClientRect();
       const popupRect = popup.getBoundingClientRect();
 
-      // Check if the popup's right side exceeds the container's right side
-      // if (popupRect.right > containerRect.right) {
-      //   popup.style.left = `${containerRect.right - popupRect.width}px`;
-      // }
-
-      // Check if the popup's left side exceeds the container's left side
-      // if (popupRect.left < containerRect.left) {
-      //   popup.style.left = `${containerRect.left}px`;
-      // }
       if (popupRect.right < containerRect.right) {
         popup.style.left = "0px";
-        popup.style.right = "unset"; // Ensure right is not conflicting
-      }
-
-      // Check if the popup's left side exceeds the container's left side
-      else if (popupRect.left > containerRect.left) {
+        popup.style.right = "unset";
+      } else if (popupRect.left > containerRect.left) {
         popup.style.right = "0px";
-        popup.style.left = "unset"; // Ensure right is not conflicting
+        popup.style.left = "unset";
       }
 
-      // Adjust the popup to be within the container on the Y axis if necessary
       if (popupRect.bottom > containerRect.bottom) {
         popup.style.bottom = "0px";
         popup.style.top = "unset";
@@ -117,57 +85,44 @@ const Pops = ({
       if (popupRect.top < containerRect.top) {
         popup.style.top = "0px";
       }
-
-      console.log(
-        popupRect.bottom,
-        containerRect.bottom,
-        popupRect.top,
-        containerRect.top,
-        "kik"
-      );
     }
   }, [isOpen]);
 
   return (
-    <>
-      <div className="relative flex justify-end">
-        {React.cloneElement(wrapper, {
-          onClick: handleWrapper,
-          ref: buttonRef,
-        })}
-        {isOpen ? (
-          <div
-            ref={containerRef}
-            className={`absolute  z-10 bg-white rounded-sm shadow-custom py-2 flex flex-col ${className}`}
-          >
-            {React.Children.map(children, (child) => {
-              return React.cloneElement(child, { handleClose });
-            })}
-          </div>
-        ) : null}
-      </div>
-    </>
+    <div className="relative flex justify-end">
+      {React.cloneElement(wrapper, {
+        onClick: handleWrapper,
+        ref: buttonRef,
+      })}
+      {isOpen && (
+        <div
+          ref={containerRef}
+          className={`absolute z-10 bg-white rounded-sm shadow-custom py-2 flex flex-col ${className}`}
+        >
+          {React.Children.map(children, (child) =>
+            React.isValidElement(child)
+              ? React.cloneElement(child, { handleClose })
+              : child
+          )}
+        </div>
+      )}
+    </div>
   );
 };
-const Item = ({ children, className, handleClose, onClick, ...rest }) => {
-  const handleClick = (event) => {
+
+const Item: React.FC<ItemProps> = ({ children, className, handleClose, onClick, ...rest }) => {
+  const handleClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     handleClose();
-    if (onClick) {
-      onClick(event);
-    }
+    onClick?.(event);
   };
+
   return (
-    <>
-      <div
-        className={`flex p-2 gap-2 ${className}`}
-        {...rest}
-        onClick={handleClick}
-      >
-        {children}
-      </div>
-    </>
+    <div className={`flex p-2 gap-2 ${className}`} {...rest} onClick={handleClick}>
+      {children}
+    </div>
   );
 };
+
 Pops.Item = Item;
 
 export default Pops;
