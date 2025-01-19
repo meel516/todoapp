@@ -18,10 +18,7 @@
       "description": "Complete React tutorial",
       "assignedUser": "8",
       "priority": "medium",
-      "tags": [
-        "React",
-        "JavaScript"
-      ]
+      "tags": ["React", "JavaScript"]
     },
     {
       "id": "3",
@@ -31,9 +28,7 @@
       "description": "Master backend with Node.js",
       "assignedUser": 3,
       "priority": "high",
-      "tags": [
-        "Node.js"
-      ]
+      "tags": ["Node.js"]
     },
     {
       "id": "4",
@@ -53,9 +48,7 @@
       "description": "Finish JavaScript online course project",
       "assignedUser": "6",
       "priority": "low",
-      "tags": [
-        "JavaScript"
-      ]
+      "tags": ["JavaScript"]
     },
     {
       "id": "6",
@@ -65,9 +58,7 @@
       "description": "Learn Angular for web development",
       "assignedUser": 3,
       "priority": "high",
-      "tags": [
-        "Angular"
-      ]
+      "tags": ["Angular"]
     },
     {
       "id": "7",
@@ -77,10 +68,7 @@
       "description": "Build a backend API using Express.js",
       "assignedUser": 4,
       "priority": "high",
-      "tags": [
-        "API",
-        "Express"
-      ]
+      "tags": ["API", "Express"]
     },
     {
       "id": "8",
@@ -90,9 +78,7 @@
       "description": "Learn TypeScript and its usage in React",
       "assignedUser": "9",
       "priority": "medium",
-      "tags": [
-        "TypeScript"
-      ]
+      "tags": ["TypeScript"]
     },
     {
       "id": "9",
@@ -102,9 +88,7 @@
       "description": "Learn MongoDB NoSQL database",
       "assignedUser": 2,
       "priority": "medium",
-      "tags": [
-        "MongoDB"
-      ]
+      "tags": ["MongoDB"]
     },
     {
       "id": "10",
@@ -114,9 +98,7 @@
       "description": "Complete Express.js tutorial",
       "assignedUser": 3,
       "priority": "high",
-      "tags": [
-        "Express.js"
-      ]
+      "tags": ["Express.js"]
     },
     {
       "id": "0210a61a-7b7a-4e16-b944-7e0e5fd70ae0",

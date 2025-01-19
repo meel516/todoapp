@@ -1,21 +1,20 @@
-import { ReactNode, useEffect } from "react"
-import { useAuth } from "../contexts/AuthContext"
-import { useNavigate } from "react-router-dom"
+import { ReactNode, useEffect } from "react";
+import { useAuth } from "../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const WithProtectedRoute = ({ children }: { children: ReactNode }) => {
-  const { isAuthenticated,isUserLoading } = useAuth()
-  const navigate = useNavigate()
+  const { isAuthenticated, isUserLoading } = useAuth();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!isAuthenticated && !isUserLoading) {
-      navigate('/')
+      navigate("/");
     }
-  }, [isAuthenticated, isUserLoading])
+  }, [isAuthenticated, isUserLoading]);
 
+  if (!isAuthenticated) return null;
 
-  if (!isAuthenticated) return null
+  return <>{children}</>;
+};
 
-  return <>{children}</>
-}
-
-export default WithProtectedRoute
+export default WithProtectedRoute;

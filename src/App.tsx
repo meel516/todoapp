@@ -9,7 +9,6 @@ import { AuthContextProvider, useAuth } from "./contexts/AuthContext";
 function App() {
   const { getUser } = useAuth();
   useEffect(() => {
-  
     getUser();
   }, []);
 

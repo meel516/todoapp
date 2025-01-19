@@ -14,52 +14,50 @@ const initialValues = {
   password: "",
 };
 const LoginForm = () => {
-   const {Login} =useAuth()
-   const navigate =useNavigate()
-   const handleSubmit = async (values,setErrors)=>{
-    try{
+  const { Login } = useAuth();
+  const navigate = useNavigate();
+  const handleSubmit = async (values, setErrors) => {
+    try {
       const response = await apiClient.get("/auth"); // Using apiClient
 
-      if(response.data.username ==values.username && response.data.password ==values.password){
-      Login(values.username)
+      if (
+        response.data.username == values.username &&
+        response.data.password == values.password
+      ) {
+        Login(values.username);
 
-      navigate("/home")
-  
+        navigate("/home");
+      } else {
+        setErrors({
+          password: "Incorrect password or Username",
+          username: "Incorrect password or Password",
+        });
       }
-      else {
-         
-   
-            setErrors({password: "Incorrect password or Username",username: "Incorrect password or Password"})
-  
+    } catch (err) {
+      console.error(err);
     }
-  }
-    catch(err){
-       console.error(err)
-    }
-
-   }
-  return ( 
+  };
+  return (
     <Formik
       initialValues={initialValues}
       validationSchema={loginValidation}
       validateOnMount
-      onSubmit={(values,{setErrors}) => {
-       handleSubmit(values,setErrors)
+      onSubmit={(values, { setErrors }) => {
+        handleSubmit(values, setErrors);
       }}
     >
-{
-      ({isValid})=>(<Form className="flex flex-col gap-5 rounded-md border border-gray-300 bg-white p-4">
-        <>
-        <FormField  label="Username" type="text" name="username" />
-        <FormField label="password" type="password" name="password" />
-        <Button type="submit" variant="primary" disabled={!isValid}>
-          submit
-        </Button>
-        </>
-      </Form>)
-}
+      {({ isValid }) => (
+        <Form className="flex flex-col gap-5 rounded-md border border-gray-300 bg-white p-4">
+          <>
+            <FormField label="Username" type="text" name="username" />
+            <FormField label="password" type="password" name="password" />
+            <Button type="submit" variant="primary" disabled={!isValid}>
+              submit
+            </Button>
+          </>
+        </Form>
+      )}
     </Formik>
-    
   );
 };
 

@@ -3,7 +3,7 @@ import { configs } from "../configs";
 
 const apiClient = axios.create({
   baseURL: configs.BASE_URL,
-  timeout: 5000, 
+  timeout: 5000,
   headers: {
     "Content-Type": "application/json",
   },
@@ -25,29 +25,25 @@ export const SetInterceptor = (triggerToast) => {
       let errorMessage = "An unknown error occurred";
 
       if (error.response) {
-       
         errorMessage = `Error: ${error.response.status} - ${
           error.response.data.message || error.response.statusText
         }`;
       } else if (error.request) {
-       
         if (!navigator.onLine) {
-          errorMessage = "You are offline. Please check your internet connection.";
+          errorMessage =
+            "You are offline. Please check your internet connection.";
         } else {
           errorMessage = "Network error: No response received from the server.";
         }
       } else {
-        
         errorMessage = `Error: ${error.message}`;
       }
 
       triggerToast(errorMessage, "error");
 
-      
       return Promise.reject(error);
-    }
+    },
   );
 };
-
 
 export default apiClient;

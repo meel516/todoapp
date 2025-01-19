@@ -1,14 +1,17 @@
-
-import React from 'react';
+import React from "react";
 
 export interface ToastTypes {
   showToast: boolean;
   message: string;
-  mode?: "success" | "warning" | "error"; 
+  mode?: "success" | "warning" | "error";
 }
 
-const Toast: React.FC<ToastTypes> = ({ showToast, message, mode = "success" }) => {
-  if (!showToast) return null; 
+const Toast: React.FC<ToastTypes> = ({
+  showToast,
+  message,
+  mode = "success",
+}) => {
+  if (!showToast) return null;
 
   const getShadowClass = () => {
     switch (mode) {
@@ -19,7 +22,7 @@ const Toast: React.FC<ToastTypes> = ({ showToast, message, mode = "success" }) =
       case "error":
         return "shadow-red-500";
       default:
-        return ""; 
+        return "";
     }
   };
 
@@ -28,10 +31,12 @@ const Toast: React.FC<ToastTypes> = ({ showToast, message, mode = "success" }) =
       <div
         className={`p-8 bg-white max-w-md mx-auto bg-gradient-to-r rounded-xl ${getShadowClass()} shadow-xl transition-all duration-500 transform scale-95 hover:scale-100`}
         style={{
-          animation: "fadeIn 0.5s ease-out, slideIn 0.5s ease-out"
+          animation: "fadeIn 0.5s ease-out, slideIn 0.5s ease-out",
         }}
       >
-        <h1 className="text-lg font-medium text-center text-blue-300">{message}</h1>
+        <h1 className="text-lg font-medium text-center text-blue-300">
+          {message}
+        </h1>
       </div>
     </div>
   );

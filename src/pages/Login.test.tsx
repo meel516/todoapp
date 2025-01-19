@@ -5,9 +5,7 @@ import Login from "./Login";
 import { expect } from "chai";
 import { useAuth } from "../contexts/AuthContext";
 
-
-
-vi.mock('../contexts/AuthContext', () => ({
+vi.mock("../contexts/AuthContext", () => ({
   useAuth: vi.fn(),
 }));
 
@@ -22,7 +20,7 @@ vi.mock("../../api/apiClient", () => ({
 describe("LoginForm Component", () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    
+
     useAuth.mockReturnValue({
       login: vi.fn(),
     });
@@ -39,41 +37,33 @@ describe("LoginForm Component", () => {
   it("shows validation errors for required fields", async () => {
     render(<Login />);
 
-    
     const submitButton = screen.getByText("submit");
     fireEvent.click(submitButton);
 
-   
     await waitFor(() => {
       expect(screen.getByText("username is required")).toBeInTheDocument();
       expect(screen.getByText("Password is required")).toBeInTheDocument();
     });
   });
 
-
-
   it("disables the submit button when the form is invalid and enables it after fields are valid", async () => {
     render(<Login />);
-  
+
     const submitButton = screen.getByText("submit");
-  
-    
+
     await waitFor(() => {
       expect(submitButton).toBeDisabled();
     });
-  
-  
+
     fireEvent.change(screen.getByLabelText("Username"), {
       target: { value: "testUser" },
     });
     fireEvent.change(screen.getByLabelText("password"), {
       target: { value: "testPassword" },
     });
-  
-    
+
     await waitFor(() => {
       expect(submitButton).toBeEnabled();
     });
   });
-
 });

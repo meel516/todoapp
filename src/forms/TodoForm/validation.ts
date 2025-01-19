@@ -1,7 +1,5 @@
+import * as Yup from "yup";
 
-import * as Yup from 'yup';
-
-// Validation schema with Yup
 const todovalidationSchema = Yup.object({
   title: Yup.string().required("Title is required"),
   status: Yup.string().required("Status is required"),

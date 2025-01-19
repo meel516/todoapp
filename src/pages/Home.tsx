@@ -26,7 +26,7 @@ const sortOptions = [
 const Home = () => {
   const { data: usersData, isLoading: userDataLoading } = useFetch(
     "users",
-    "getAll"
+    "getAll",
   );
   const [openModal, setOpenModal] = useState(false);
   const [mode, setMode] = useState("create");
@@ -61,7 +61,7 @@ const Home = () => {
 
   const filteredTodos = useMemo(() => {
     return todoData?.data?.filter((todo) =>
-      todo.title.toLowerCase().includes(debouncedSearch.toLowerCase())
+      todo.title.toLowerCase().includes(debouncedSearch.toLowerCase()),
     );
   }, [debouncedSearch, todoData]);
 

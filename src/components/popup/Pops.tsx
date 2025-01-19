@@ -33,7 +33,9 @@ const Pops: React.FC<PopsProps> & { Item: React.FC<ItemProps> } = ({
   const handleOpen = () => setOpen(true);
   const handleToggle = () => setOpen((prev) => !prev);
 
-  const handleWrapper = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+  const handleWrapper = (
+    event: React.MouseEvent<HTMLDivElement, MouseEvent>,
+  ) => {
     handleToggle();
     wrapper.props.onClick?.(event);
   };
@@ -102,7 +104,7 @@ const Pops: React.FC<PopsProps> & { Item: React.FC<ItemProps> } = ({
           {React.Children.map(children, (child) =>
             React.isValidElement(child)
               ? React.cloneElement(child, { handleClose })
-              : child
+              : child,
           )}
         </div>
       )}
@@ -110,14 +112,24 @@ const Pops: React.FC<PopsProps> & { Item: React.FC<ItemProps> } = ({
   );
 };
 
-const Item: React.FC<ItemProps> = ({ children, className, handleClose, onClick, ...rest }) => {
+const Item: React.FC<ItemProps> = ({
+  children,
+  className,
+  handleClose,
+  onClick,
+  ...rest
+}) => {
   const handleClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     handleClose();
     onClick?.(event);
   };
 
   return (
-    <div className={`flex p-2 gap-2 ${className}`} {...rest} onClick={handleClick}>
+    <div
+      className={`flex p-2 gap-2 ${className}`}
+      {...rest}
+      onClick={handleClick}
+    >
       {children}
     </div>
   );

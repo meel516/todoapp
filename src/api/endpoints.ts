@@ -1,6 +1,5 @@
 export type EndpointFunction = (params: any) => string;
 
-
 export type Endpoint = string | EndpointFunction;
 
 export type Endpoints = {
@@ -30,25 +29,27 @@ export type Endpoints = {
 
 export const endpoints: Endpoints = {
   auth: {
-    getConfig: '/',
-    create:'/create'
+    getConfig: "/",
+    create: "/create",
   },
   todo: {
-    getAll: '/todo',
+    getAll: "/todo",
     getById: (id: string) => `/todo/${id}`,
-    create: '/todo',
+    create: "/todo",
     update: (id: string) => `/todo/${id}`,
     partialUpdate: (id: string) => `/todo/${id}/partial-update`,
     delete: (id: string) => `/todo/${id}`,
-    filter: (filters: Record<string, string>) => `/todo?${new URLSearchParams(filters).toString()}`,
+    filter: (filters: Record<string, string>) =>
+      `/todo?${new URLSearchParams(filters).toString()}`,
   },
   users: {
-    getAll: '/users',
+    getAll: "/users",
     getById: (id: string) => `/users/${id}`,
-    create: '/users',
+    create: "/users",
     update: (id: string) => `/users/${id}`,
     partialUpdate: (id: string) => `/users/${id}/partial-update`,
     delete: (id: string) => `/users/${id}`,
-    filter: (filters: Record<string, string>) => `/users/filter?${new URLSearchParams(filters).toString()}`,
+    filter: (filters: Record<string, string>) =>
+      `/users/filter?${new URLSearchParams(filters).toString()}`,
   },
 };

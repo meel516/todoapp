@@ -37,7 +37,7 @@ const DropDown: React.FC<DropDownProps> & {
       {React.Children.map(children, (child) =>
         React.isValidElement(child)
           ? React.cloneElement(child, { isOpen, toggleDropdown })
-          : child
+          : child,
       )}
     </div>
   );

@@ -19,11 +19,14 @@ const Template: StoryFn = () => {
       >
         Show Toast
       </button>
-      <Toast showToast={showToast} message="This is a unique toast!" mode="warning" />
+      <Toast
+        showToast={showToast}
+        message="This is a unique toast!"
+        mode="warning"
+      />
     </div>
   );
 };
 
 export const ToastExample = Template.bind({});
-ToastExample.args = {}
-
+ToastExample.args = {};

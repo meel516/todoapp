@@ -1,5 +1,5 @@
 import React from "react";
-import { Meta,StoryFn } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import { Button, ButtonProps } from "./Button"; // Import Button component and ButtonProps
 
 export default {
@@ -17,26 +17,25 @@ export default {
 } as Meta<ButtonProps>;
 
 // Template to render the Button component
-const Template: StoryFn<ButtonProps> = (args) => <Button {...args} >hello !</Button>;
+const Template: StoryFn<ButtonProps> = (args) => (
+  <Button {...args}>hello !</Button>
+);
 
 // Primary Button
 export const Primary = Template.bind({});
 Primary.args = {
- 
   variant: "primary", // Passing variant as "primary"
 };
 
 // Secondary Button
 export const Secondary = Template.bind({});
 Secondary.args = {
-  
   variant: "secondary", // Passing variant as "secondary"
 };
 
 // Button with Custom ClassName
 export const CustomClass = Template.bind({});
 CustomClass.args = {
-  
   variant: "primary",
   className: "rounded-full", // Adding custom Tailwind class
 };

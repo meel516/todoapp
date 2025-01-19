@@ -1,7 +1,7 @@
-type LoaderProps ={
-    isLoading:Boolean,
-}
-const Loader = ({ isLoading }:LoaderProps) => {
+type LoaderProps = {
+  isLoading: Boolean;
+};
+const Loader = ({ isLoading }: LoaderProps) => {
   return (
     <>
       {isLoading && (

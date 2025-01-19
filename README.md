@@ -1,6 +1,7 @@
 # Project Name
 
 tot do list
+
 ## Getting Started
 
 Follow these instructions to set up and run the project locally.
@@ -14,11 +15,16 @@ Ensure you have the following installed on your machine:
 
 ### Installation
 
-1. Clone the repository:
+1. Add environment variables:
 
    ```bash
-   git clone <repository-url>
-   cd <project-directory>
+   VITE_API_BASE_URL=http://localhost:3000
+   ```
+
+2. Clone the repository:
+
+   ```bash
+   git clone https://github.com/meel516/todoapp.git
    npm install
    npm run server
    npm run dev

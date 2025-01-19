@@ -1,4 +1,3 @@
-// src/FormField.tsx
 import { useField } from "formik";
 import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -12,7 +11,7 @@ type FormFieldProps = {
   name: string;
   label: string;
   type: "text" | "select" | "date" | "number" | "password";
-  options?: Option[]; 
+  options?: Option[];
 };
 
 const FormField = ({ name, label, type, options, ...rest }: FormFieldProps) => {
@@ -24,7 +23,7 @@ const FormField = ({ name, label, type, options, ...rest }: FormFieldProps) => {
         <div className="flex flex-col gap-3">
           <label htmlFor={name}>{label}</label>
           <input
-          id={name}
+            id={name}
             className={`p-3 bg-gray-100 rounded-md ${
               meta.error
                 ? "shadow-[0_0_0_2px_rgba(248,113,113,0.2)]"
@@ -87,7 +86,7 @@ const FormField = ({ name, label, type, options, ...rest }: FormFieldProps) => {
         <div className="flex flex-col gap-3">
           <label htmlFor={name}>{label}</label>
           <input
-          id={name}
+            id={name}
             className={`p-3 bg-gray-100 rounded-md ${
               meta.error
                 ? "shadow-[0_0_0_2px_rgba(248,113,113,0.2)]"
@@ -107,7 +106,7 @@ const FormField = ({ name, label, type, options, ...rest }: FormFieldProps) => {
         <div className="flex flex-col gap-3">
           <label htmlFor={name}>{label}</label>
           <input
-          id={name}
+            id={name}
             className={`p-3 bg-gray-100 rounded-md ${
               meta.error
                 ? "shadow-[0_0_0_2px_rgba(248,113,113,0.2)]"

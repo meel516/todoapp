@@ -52,7 +52,9 @@ const PreSelectedDropdown: Story = () => {
 
   return (
     <div className="p-6 max-w-xs mx-auto">
-      <h1 className="text-xl font-semibold mb-4">Custom Dropdown with Pre-selected Option</h1>
+      <h1 className="text-xl font-semibold mb-4">
+        Custom Dropdown with Pre-selected Option
+      </h1>
 
       <DropDown>
         <DropDown.Button>
@@ -86,7 +88,9 @@ const CustomItemsDropdown: Story = () => {
 
   return (
     <div className="p-6 max-w-xs mx-auto">
-      <h1 className="text-xl font-semibold mb-4">Custom Dropdown with Dynamic Items</h1>
+      <h1 className="text-xl font-semibold mb-4">
+        Custom Dropdown with Dynamic Items
+      </h1>
 
       <DropDown>
         <DropDown.Button>

@@ -1,87 +1,80 @@
-import { useCallback, useState } from 'react';
-import apiClient from './apiClient'; 
-import { endpoints, Endpoints, EndpointFunction } from './endpoints';
-import useLoader from '../hooks/useLoader';
-
+import { useCallback, useState } from "react";
+import apiClient from "./apiClient";
+import { endpoints, Endpoints, EndpointFunction } from "./endpoints";
+import useLoader from "../hooks/useLoader";
 
 interface MutationOptions {
-  method?: 'POST' | 'GET' | 'PUT' | 'DELETE'; 
+  method?: "POST" | "GET" | "PUT" | "DELETE";
   isFormData?: boolean;
-  body?: any; 
+  body?: any;
 }
 
 const useMutation = () => {
-  const {setLoading} =useLoader()
+  const { setLoading } = useLoader();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
 
   const mutation = useCallback(
     async <S extends keyof Endpoints, A extends keyof Endpoints[S]>(
-      serviceName: S, 
-      action: A, 
+      serviceName: S,
+      action: A,
       params?: any,
-      options: MutationOptions = {} 
+      options: MutationOptions = {},
     ) => {
       const mergedOptions = {
-        method: 'POST', 
-        isFormData: false, 
-        body: {}, 
-        ...options, 
+        method: "POST",
+        isFormData: false,
+        body: {},
+        ...options,
       };
 
       const { method, isFormData, body } = mergedOptions;
       setIsLoading(true);
-      setLoading(true)
-      setError(null); // Clear previous errors
-
+      setLoading(true);
+      setError(null);
       try {
-        // Get the endpoint from the endpoints configuration
-        const delay = await new Promise((resolve, reject) => {setTimeout(()=>resolve(null),1000)})
+        const delay = await new Promise((resolve, reject) => {
+          setTimeout(() => resolve(null), 1000);
+        });
         const endpoint = endpoints[serviceName][action];
 
-        // Explicitly check if the endpoint is a function, and call it if it is
         let url: string;
-        if (typeof endpoint === 'function') {
-          // Call the function to get a string URL
+        if (typeof endpoint === "function") {
           url = (endpoint as EndpointFunction)(params);
         } else {
-          // Directly use the string if it's already a string
           url = endpoint as string;
         }
 
-        // Now that `url` is guaranteed to be a string, we can use it directly in the request
         const headers = isFormData
           ? {}
           : {
-              'Content-Type': 'application/json',
+              "Content-Type": "application/json",
             };
 
-        // Perform the API request using your apiClient (Axios)
         const response = await apiClient({
-          url, // Now it's definitely a string
+          url,
           method,
           headers,
-          data: isFormData ? body : JSON.stringify(body), // Use JSON.stringify for non-form data
+          data: isFormData ? body : JSON.stringify(body),
         });
 
         const results = response.data;
 
-        // Handle response success or failure
         if (results) {
-          return { results, status: response.status }; // Success response
+          return { results, status: response.status };
         } else {
-          throw new Error('Request failed with error: ' + results.message); // Handle failure
+          throw new Error("Request failed with error: " + results.message);
         }
       } catch (err) {
-        console.error('Mutation error:', err);
-        setError(err as Error); // Save the error to state
-        throw err; // Re-throw for potential external handling
+        console.error("Mutation error:", err);
+        setError(err as Error);
+        throw err;
       } finally {
-        setIsLoading(false); // Reset loading state
-        setLoading(false)
+        setIsLoading(false);
+        setLoading(false);
       }
     },
-    [] // Empty dependency array ensures this function is stable across re-renders
+    [],
   );
 
   return { mutation, isLoading, error };
